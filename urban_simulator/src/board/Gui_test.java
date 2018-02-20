@@ -1,140 +1,241 @@
 package board;
 
-import java.awt.FlowLayout;
-import java.awt.GridLayout;
-import java.awt.event.WindowEvent;
-import java.awt.event.WindowListener;
-import java.io.File;
+import java.awt.Color;
 
-import javax.swing.DefaultListModel;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
+import java.awt.GridLayout;
+
+
 import javax.swing.JButton;
-import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JList;
-import javax.swing.JMenu;
-import javax.swing.JMenuBar;
-import javax.swing.JMenuItem;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import javax.swing.JScrollPane;
-import javax.swing.JSplitPane;
-import javax.swing.JTextField;
-import javax.swing.ListSelectionModel;
+import javax.swing.JProgressBar;
+import javax.swing.JTabbedPane;
 
+
+/**
+ * @author François-Laurent
+ *
+ */
 
 public class Gui_test extends JFrame {
 
-	private JTextField actionsField;
-	private JButton addaction ;
-	private JPanel section1_1, section2, section3, sectionheure;
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	protected JPanel sectionGauche;
+	protected JPanel sectionMap;
+	protected JPanel sectionDroite;
+	protected JPanel sectionHeure;
+	protected JPanel sectionPersonnage;
+	protected JPanel sectionInfos;
+	protected JPanel liste_besoins;
+	protected JPanel liste_actions;
 	
-	private JList<String> zoneactions, zoneperso;
-	private DefaultListModel<String> listperso, listaction;
-	private JScrollPane barresDeDefilement;
-	private JOptionPane infosPopUp;
+	protected JButton personnage_1;
+	protected JButton personnage_2;
+	protected JButton personnage_3;
 	
-	private JMenuBar barreDeMenu;
-	private JMenu menu1;
-	private JMenuItem ouvrir;
+	protected JLabel chronometre = new JLabel("Heure : ");
+	protected JLabel map = new JLabel("Map :");
+	protected JLabel infos_personnage = new JLabel ("Information :");
+	protected JLabel name = new JLabel("Nom :");
+	protected JLabel besoins = new JLabel ("Besoins :");
+	protected JLabel energie = new JLabel ("Energie :");
+	protected JLabel sante = new JLabel ("Santé :");
+	protected JLabel hygiene = new JLabel ("Hygiène :");
+	protected JLabel humeur = new JLabel ("Humeur");
+	protected JLabel bienetre = new JLabel ("Bien-Être");
 	
-	private JFileChooser choisiractions;
+	protected JProgressBar barenergie, barsante, barhygiene, barhum;
 	
-	
-	public Gui_test (String titre) {
-	
-	this.setTitle(titre);
-	
-	/*Les options par défaut pour notre fenêtre*/
-	this.setVisible(true); 
-	this.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
-	this.setLayout(new GridLayout(1, 3));
-	section1_1 = new JPanel();
-	
-	/*On rempli la "section1"*/
-	sectionheure = new JPanel();
-	sectionheure.setSize(200, 100);
-	
-	listperso = new DefaultListModel<String>();
-    zoneperso = new JList<String>(listperso);
-    zoneperso.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-    zoneperso.setLayoutOrientation(JList.VERTICAL);
-    
-    
-    section1_1.setSize(200,300);
-    section1_1.add(zoneperso);
-    
-    JSplitPane section1 = new JSplitPane(JSplitPane.VERTICAL_SPLIT, sectionheure, section1_1);
-    
-	
-    this.getContentPane().add(section1);
-    barresDeDefilement = new JScrollPane(zoneperso);
-    this.getContentPane().add(barresDeDefilement);
-    
-    section1.setSize(200, 400);
-    
-    section2 = new JPanel();
-    section2.add(new JLabel("Map"));
-    section2.setSize(600, 400);
-    
-    this.getContentPane().add(section2);
-    
-    section3 = new JPanel();
-    section3.add(new JLabel("infos perso"));
-    section3.setSize(200, 400);
-    
-    listaction = new DefaultListModel<String>();
-    zoneactions = new JList<String>(listperso);
-    zoneactions.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-    zoneactions.setLayoutOrientation(JList.VERTICAL);
-    
-    this.getContentPane().add(section3);
-    
-    this.addWindowListener(new ActionFermer());
-    this.setSize(1000, 400);
-}
+	private JTabbedPane tab;
 	
 	
-	class ActionFermer implements WindowListener
-	{
-		public void windowClosing(WindowEvent e)
-		{
-			int exit = JOptionPane.showConfirmDialog(null,  "Voulez vous quitter ?", "Quitter ?", JOptionPane.YES_NO_OPTION);
-			if(exit == JOptionPane.YES_OPTION)
-			{
-				System.exit(0);
-			}
-		}
-		//Les propriétés qui suivent sont obligatoires (Interface implémentée) mais nous ne les utiliserons pas
-		public void windowActivated(WindowEvent e) 
-		{			
-		}
-
-		public void windowClosed(WindowEvent e) 
-		{			
-		}
-
-		public void windowDeactivated(WindowEvent e) 
-		{			
-		}
-
-		public void windowDeiconified(WindowEvent e) 
-		{			
-		}
-
-		public void windowIconified(WindowEvent e) 
-		{			
-		}
-
-		public void windowOpened(WindowEvent e) 
-		{			
-		}
+	
+	
+	public Gui_test(String titre) {
+		
+		
+		initSectionGauche();
+		initSectionMap();
+		initSectionDroite();
+		
+		this.setLayout(new GridLayout(1,3));
+		
+		this.getContentPane().add(sectionGauche);
+		this.getContentPane().add(sectionMap);
+		this.getContentPane().add(sectionDroite);
+		
+		setDefaultCloseOperation(EXIT_ON_CLOSE);
+		setSize(1200, 600);
+		setResizable(false);
+		setVisible(true);
+		
+		
 	}
+	
+	
+	public void initSectionGauche () {
+		
+		sectionGauche = new JPanel();
+		sectionHeure = new JPanel();
+		sectionPersonnage = new JPanel();
+		
+		sectionGauche.setLayout(new GridLayout(2,1));
+		sectionPersonnage.setLayout(new GridLayout(3,1));
+		
+		sectionHeure.setSize(100, 100);
+		sectionPersonnage.setSize(100, 100);
+		
+		personnage_1 = new JButton("Perso1");
+		personnage_2 = new JButton("Perso2");
+		personnage_3 = new JButton("Perso3");
+		
+		sectionHeure.add(chronometre);
+		
+		sectionPersonnage.add(personnage_1);
+		sectionPersonnage.add(personnage_2);
+		sectionPersonnage.add(personnage_3);
+		
+		sectionGauche.add(sectionHeure);
+		sectionGauche.add(sectionPersonnage);
+		sectionGauche.setSize(100, 500);
+
+	}
+	
+	
+	public void initSectionMap() {
+		
+		sectionMap = new JPanel();
+		//sectionMap.add(map);
+		sectionMap.setBackground(Color.BLACK);
+		sectionMap.setSize(500, 500);
+	}
+	
+
+	public void initSectionDroite() {
+		
+		sectionDroite = new JPanel();
+		
+		sectionDroite.setLayout(new GridLayout (3, 1));
+		initInfos();
+		initSectionBesoin();
+		
+		//sectionDroite.add(infos_personnage);
+		sectionDroite.add(sectionInfos);
+		sectionDroite.add(tab);
+		sectionDroite.setSize(100,500);
+		
+	}
+	
+	public void initInfos() {
+		
+		sectionInfos = new JPanel();
+		sectionInfos.setLayout(new GridBagLayout());
+		
+		GridBagConstraints b = new GridBagConstraints();
+		
+		b.gridx = 0;
+		b.gridy = 0;
+		sectionInfos.add(name, b);
+		
+		/*b.gridx = 1;
+		b.gridy = 0;
+		sectionInfos.add(, b);
+		*/
+		
+		
+		b.gridx = 0;
+		b.gridy = 1;
+		sectionInfos.add(bienetre, b);
+		
+		/*b.gridx = 1;
+		b.gridy = 1;
+		sectionInfos.add(, b);
+		*/
+		
+	}
+	
+	
+	public void initSectionBesoin() {
+		
+		liste_besoins = new JPanel();
+		liste_actions = new JPanel();
+		
+		int en, hu, hy,sa;
+		
+		en = 90;
+		hu = 70;
+		hy = 50;
+		sa = 60;
+		
+		barenergie = new JProgressBar();
+		barsante = new JProgressBar();
+		barhum = new JProgressBar();
+		barhygiene = new JProgressBar();
+		
+		tab = new JTabbedPane();
+
+		liste_besoins.setLayout(new GridBagLayout());
+		
+		GridBagConstraints c = new GridBagConstraints();
+		
+		c.gridx = 0;
+		c.gridy = 0;
+		liste_besoins.add(energie, c);
+		
+		c.gridx = 0;
+		c.gridy = 1;
+		liste_besoins.add(sante, c);
+		
+		c.gridx = 0;
+		c.gridy = 2;
+		liste_besoins.add(hygiene, c);
+		
+		c.gridx = 0;
+		c.gridy = 3;
+		liste_besoins.add(humeur, c);
+		
+		//ajout des barres
+		
+		barenergie.setValue(en);
+		c.gridx = 1;
+		c.gridy = 0;
+		liste_besoins.add(barenergie, c);
+		
+		barsante.setValue(sa);
+		c.gridx = 1;
+		c.gridy = 1;
+		liste_besoins.add(barsante, c);
+		
+		barhygiene.setValue(hy);
+		c.gridx = 1;
+		c.gridy = 2;
+		liste_besoins.add(barhygiene, c);
+		
+		barhum.setValue(hu);
+		c.gridx = 1;
+		c.gridy = 3;
+		liste_besoins.add(barhum, c);
+		
+		
+		tab.addTab("Besoin", liste_besoins);
+		tab.addTab("Actions", liste_actions);
+		
+		
+		
+		
+	}
+	
 	
 	
 	
 	public static void main(String[] args) 
 	{
-		new Gui_test("Moteur de Recherche");
+		new Gui_test ("Test d'Interface Graphique");
 	}
 }
