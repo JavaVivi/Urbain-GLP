@@ -20,9 +20,9 @@ public class Grid {
 	private static final int BLOCKED = 1;
 	
 	/** The width in grid cells of our map */
-	private static final int WIDTH = 100;
+	private static final int WIDTH = 500;
 	/** The height in grid cells of our map */
-	private static final int HEIGHT = 100;
+	private static final int HEIGHT = 500;
 	
 	/** The rendered size of the tile (in pixels) */
 	public static final int TILE_SIZE = 20;
