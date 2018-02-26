@@ -138,7 +138,7 @@ public class Gui_test extends JFrame {
 	}
 	
 	/**
-	 * 
+	 * characters infos
 	 */
 	
 	public void initInfos() {
