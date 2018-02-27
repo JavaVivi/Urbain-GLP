@@ -1,14 +1,11 @@
 package board;
 
 import java.awt.BorderLayout;
-import java.awt.Color;
-import java.awt.Component;
 import java.awt.FlowLayout;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.GridLayout;
 
-import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -16,7 +13,8 @@ import javax.swing.JPanel;
 import javax.swing.JProgressBar;
 import javax.swing.JTabbedPane;
 
-import data.Grid;
+import asset.Display;
+import processing.Chrono;
 
 /**
  * @author François-Laurent
@@ -31,7 +29,6 @@ public class Gui_test extends JFrame {
 	private static final long serialVersionUID = 1L;
 	protected JPanel mapSection;
 	protected JPanel rightSection;
-	protected JPanel hourSection;
 	protected JPanel particularSection;
 	protected JPanel infoSection;
 	protected JPanel list_need;
@@ -46,8 +43,6 @@ public class Gui_test extends JFrame {
 	protected JButton delaction;
 	
 	
-	protected JLabel chronometre = new JLabel("Heure : ");
-	protected JLabel map = new JLabel("Map :");
 	protected JLabel infos_personnage = new JLabel ("Information :");
 	protected JLabel name = new JLabel("Nom :");
 	protected JLabel needs = new JLabel ("Besoins :");
@@ -58,9 +53,10 @@ public class Gui_test extends JFrame {
 	protected JLabel bienetre = new JLabel ("Bien-Être");
 	
 	protected JProgressBar barenergie, barsante, barhygiene, barhum;
-	protected Grid mapGrid;
 	
 	private JTabbedPane tab;
+	private Display map;
+	private Chrono chronometer;
 	
 	
 	
@@ -88,12 +84,10 @@ public class Gui_test extends JFrame {
 	
 	public void initSectionMap() {
 		
-		mapGrid= new Grid();
 		mapSection = new JPanel();
+		map = new Display(400,400);
 		
-		
-		mapSection.add(mapGrid);
-		mapSection.setBackground(Color.black);
+		mapSection.add(map);
 		mapSection.setSize(500, 500);
 	}
 	
@@ -104,7 +98,7 @@ public class Gui_test extends JFrame {
 	public void initSectionDroite() {
 		
 		rightSection = new JPanel();
-		hourSection = new JPanel();
+		chronometer = new Chrono();
 		particularSection = new JPanel();
 		particularSection.setLayout(new FlowLayout());
 		rightSection.setLayout(new GridLayout (4, 1));
@@ -121,10 +115,6 @@ public class Gui_test extends JFrame {
 		personnage_1.setSize(100, 30);
 		personnage_2.setSize(100, 30);
 		personnage_3.setSize(100, 30);
-		
-		
-		
-		hourSection.add(chronometre);
 		
 		particularSection.add(personnage_1);
 		particularSection.add(personnage_2);
@@ -170,7 +160,7 @@ public class Gui_test extends JFrame {
 	}
 	
 	/**
-	 * 
+	 * set progressBar with the stats
 	 */
 	
 	public void initSectionBesoin() {
@@ -247,9 +237,6 @@ public class Gui_test extends JFrame {
 		list_buttonAction.add(addaction);
 		list_buttonAction.add(delaction);
 		list_actions.add(list_buttonAction);
-		
-		
-		
 		
 		tab.addTab("Actions", list_actions);
 		
