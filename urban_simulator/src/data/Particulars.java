@@ -26,5 +26,5 @@ public class Particulars {
 	}
 	public void setY (int Y1){
 		this.Y =  Y1;
-	
+	}
 }
