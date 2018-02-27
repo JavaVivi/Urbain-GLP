@@ -3,18 +3,15 @@ package assets;
 import java.awt.Canvas;
 import java.awt.Dimension;
 
-import javax.swing.JFrame;
+import javax.swing.JPanel;
 
 public class Display {
 
-	private JFrame frame;
 	private Canvas canvas;
 	
-	private String title;
 	private int width, height;
 	
-	public Display(String title, int width, int height){
-		this.title = title;
+	public Display( int width, int height){
 		this.width = width;
 		this.height = height;
 		
@@ -23,20 +20,14 @@ public class Display {
 	//create a frame to display the images
 	
 	private void createDisplay(){
-		frame = new JFrame(title);
-		frame.setSize(width, height);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.setResizable(false);
-		frame.setLocationRelativeTo(null);
-		frame.setVisible(true);
+		
 		
 		canvas = new Canvas();
 		canvas.setPreferredSize(new Dimension(width, height));
 		canvas.setMaximumSize(new Dimension(width, height));
 		canvas.setMinimumSize(new Dimension(width, height));
 		
-		frame.add(canvas);
-		frame.pack();
+		add(canvas);
 	}
 
 	public Canvas getCanvas(){
