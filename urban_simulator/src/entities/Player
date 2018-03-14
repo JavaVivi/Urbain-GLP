@@ -1,1 +1,75 @@
 
+package entities;
+
+import java.awt.Graphics;
+
+import assets.AssetSample;
+
+public class Player 
+{
+
+	private int health = 100;
+	private int humour = 100;
+	private int energy = 100;
+	private int hygiene = 100;
+	private int x;
+	private int y;
+	private String name;
+	
+	public Player(int x, int y, String name) 
+	{
+		super();
+	}
+	
+	public void update()
+	{
+		
+	}
+	
+	public void render(Graphics g)
+	{
+		g.drawImage(AssetSample.player, 0, 0, null);
+	}
+
+	public int getHealth() 
+	{
+		return health;
+	}
+
+	public void setHealth(int health) 
+	{
+		this.health = health;
+	}
+
+	public int getHumour() 
+	{
+		return humour;
+	}
+
+	public void setHumeur(int humeur) 
+	{
+		this.humour = humour;
+	}
+
+	public int getEnergy() 
+	{
+		return energy;
+	}
+
+	public void setEnergy(int energy) 
+	{
+		this.energy = energy;
+	}
+
+	public int getHygiene() 
+	{
+		return hygiene;
+	}
+
+	public void setHygiene(int hygiene) 
+	{
+		this.hygiene = hygiene;
+	}
+	
+	
+}
