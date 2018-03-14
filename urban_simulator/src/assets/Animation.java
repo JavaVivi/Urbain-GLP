@@ -1,7 +1,10 @@
 package assets;
 
 import java.awt.image.BufferedImage;
-
+/**
+* @author Francois-Laurent
+*
+*/
 public class Animation {
 	
 	private int speed, index;
@@ -27,7 +30,7 @@ public class Animation {
 				index = 0;
 		}
 	}
-	
+	//return the last frame used
 	public BufferedImage getCurrentFrame(){
 		return frames[index];
 	}
