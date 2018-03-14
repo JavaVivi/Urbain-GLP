@@ -1,0 +1,25 @@
+package states;
+
+import java.awt.Graphics;
+
+import entities.Player;
+
+public class SimulatorState extends State
+{
+	private Player player;
+	
+	public SimulatorState()
+	{
+		player = new Player(100, 100,null);
+	}
+	
+	public void update() 
+	{
+		player.update();
+	}
+
+	public void render(Graphics g) 
+	{
+		player.render(g);
+	}
+}
