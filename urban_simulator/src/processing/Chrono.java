@@ -13,7 +13,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 
-
+//This class is used in the Game JFrame
 public class Chrono extends JPanel implements Runnable{
 
 	private static Font font = new Font(Font.MONOSPACED, Font.BOLD, 20);
