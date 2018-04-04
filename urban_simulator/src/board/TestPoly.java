@@ -17,6 +17,15 @@ public class TestPoly extends JPanel {
 	Color beton =new Color(90,94,107);
 	Color herbe =new Color(130,196,108);
 	
+	private int p1X, p1Y, p2X, p2Y, p3X, p3Y;
+	public TestPoly(Player p1, Player p2, Player p3) {
+	
+		p1X =p1.getX();p1Y = p1.getY();
+		p2X=p2.getX();p2Y = p2.getY();
+		p3X =p3.getX();p3Y = p3.getY();
+		repaint();
+	}
+	
 	private boolean debug = false;
 	public void paint (Graphics g) {
 		g.setColor(herbe);
