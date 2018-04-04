@@ -6,8 +6,12 @@ import java.awt.Graphics;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
-public class TestPoly extends JPanel {
+public class Dashboard extends JPanel {
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	Color brown =new Color(135,89,26);
 	Color beige =new Color(255,222,117);
 	Color violet =new Color(128,0,128);
@@ -17,19 +21,12 @@ public class TestPoly extends JPanel {
 	Color beton =new Color(90,94,107);
 	Color herbe =new Color(130,196,108);
 	
+	
 	private int hourPositionX = 40;
 	private int hourPositionY = 40;
 	private int secondPositionX = 40;
 	private int secondPositionY = 40;
 	
-	private int p1X, p1Y, p2X, p2Y, p3X, p3Y;
-	public TestPoly(Player p1, Player p2, Player p3) {
-	
-		p1X =p1.getX();p1Y = p1.getY();
-		p2X=p2.getX();p2Y = p2.getY();
-		p3X =p3.getX();p3Y = p3.getY();
-		repaint();
-	}
 	
 	private boolean debug = false;
 	public void paint (Graphics g) {
@@ -71,15 +68,15 @@ public class TestPoly extends JPanel {
 		g.setColor(Color.RED);
 		g.drawOval(hourPositionX+1, secondPositionY+1 ,20, 20);//deplacement verticale
 		g.drawOval(secondPositionX+1, hourPositionY+1 ,20, 20);//deplacement horizontale
-		g.fillOval(p1X, p1Y, 20, 20);
+		
 		g.setColor(Color.BLUE);
 		g.drawOval(hourPositionX+1, secondPositionY+1 ,20, 20);//deplacement verticale
 		g.drawOval(secondPositionX+1, hourPositionY+1 ,20, 20);//deplacement horizontale
-		g.fillOval(p2X, p2Y, 20, 20);
+		
 		g.setColor(Color.YELLOW);
 		g.drawOval(hourPositionX+1, secondPositionY+1 ,20, 20);//deplacement verticale
 		g.drawOval(secondPositionX+1, hourPositionY+1 ,20, 20);//deplacement horizontale
-		g.fillOval(p3X, p3Y, 20, 20);
+		
 		g.dispose();
 		
 	}
@@ -91,10 +88,28 @@ public class TestPoly extends JPanel {
 	}
 	public static void main (String[] args) {
 		JFrame frame = new JFrame();
-		frame.add(new TestPoly());
+		frame.add(new Dashboard());
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setBounds(40, 40, 800, 640);
 		frame.setVisible(true);
 		
+	}
+
+	public void setHourPositionX(int hourPositionX) {
+		this.hourPositionX = hourPositionX;
+	}
+
+	public void setHourPositionY(int hourPositionY) {
+		this.hourPositionY = hourPositionY;
+	}
+
+
+
+	public void setSecondPositionX(int secondPositionX) {
+		this.secondPositionX = secondPositionX;
+	}
+
+	public void setSecondPositionY(int secondPositionY) {
+		this.secondPositionY = secondPositionY;
 	}
 }
