@@ -64,10 +64,16 @@ public class TestPoly extends JPanel {
 		g.fillRect(400, 320, 40, 40);
 		g.fillRect(200, 480, 40, 40);
 		g.setColor(Color.RED);
+		g.drawOval(hourPositionX+1, secondPositionY+1 ,20, 20);//deplacement verticale
+		g.drawOval(secondPositionX+1, hourPositionY+1 ,20, 20);//deplacement horizontale
 		g.fillOval(p1X, p1Y, 20, 20);
 		g.setColor(Color.BLUE);
+		g.drawOval(hourPositionX+1, secondPositionY+1 ,20, 20);//deplacement verticale
+		g.drawOval(secondPositionX+1, hourPositionY+1 ,20, 20);//deplacement horizontale
 		g.fillOval(p2X, p2Y, 20, 20);
 		g.setColor(Color.YELLOW);
+		g.drawOval(hourPositionX+1, secondPositionY+1 ,20, 20);//deplacement verticale
+		g.drawOval(secondPositionX+1, hourPositionY+1 ,20, 20);//deplacement horizontale
 		g.fillOval(p3X, p3Y, 20, 20);
 		g.dispose();
 		
