@@ -63,6 +63,12 @@ public class TestPoly extends JPanel {
 		g.fillRect(520, 160, 40, 40);
 		g.fillRect(400, 320, 40, 40);
 		g.fillRect(200, 480, 40, 40);
+		g.setColor(Color.RED);
+		g.fillOval(p1X, p1Y, 20, 20);
+		g.setColor(Color.BLUE);
+		g.fillOval(p2X, p2Y, 20, 20);
+		g.setColor(Color.YELLOW);
+		g.fillOval(p3X, p3Y, 20, 20);
 		g.dispose();
 		
 	}
