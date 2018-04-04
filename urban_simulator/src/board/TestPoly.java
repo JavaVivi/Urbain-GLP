@@ -17,6 +17,11 @@ public class TestPoly extends JPanel {
 	Color beton =new Color(90,94,107);
 	Color herbe =new Color(130,196,108);
 	
+	private int hourPositionX = 40;
+	private int hourPositionY = 40;
+	private int secondPositionX = 40;
+	private int secondPositionY = 40;
+	
 	private int p1X, p1Y, p2X, p2Y, p3X, p3Y;
 	public TestPoly(Player p1, Player p2, Player p3) {
 	
